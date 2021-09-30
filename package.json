@@ -1,0 +1,19 @@
+{
+  "name": "exercise-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.2.3"
+  },
+  "dependencies": {
+    "@testing-library/dom": "^8.7.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "jest-fetch-mock": "^3.0.3"
+  }
+}
