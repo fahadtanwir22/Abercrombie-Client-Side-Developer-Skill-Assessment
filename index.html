@@ -45,37 +45,7 @@
     </script>
         </div>
     </div>
-    <script type="text/javascript">
-
-        const userListEl = document.getElementById('user-list').innerHTML;
-        const template = Handlebars.compile(userListEl);
-        const targetDiv = document.getElementsByClassName("userDetail");
-
-        (() => {
-
-            fetch("https://5dc588200bbd050014fb8ae1.mockapi.io/assessment")
-                .then(response => response.json())
-                .then((data) => {
-                    var userData = template({ usersList: data })
-                    document.getElementById('test').innerHTML = userData;
-
-                }).catch((error) => {
-                    console.log(error)
-                })
-
-        })();
-
-        function toggleDisplay(value) {
-            if (targetDiv[value].style.display === '')
-                targetDiv[value].style.display = "none";
-            if (targetDiv[value].style.display === "none") {
-                targetDiv[value].style.display = "block";
-            } else {
-                targetDiv[value].style.display = "none";
-            }
-        }
-
-    </script>
+    <script type="text/javascript" src="main.js">  </script>
 </body>
 
 </html>

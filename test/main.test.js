@@ -1,28 +1,27 @@
-const { fireEvent, getByText } = require('@testing-library/dom');
-const domlibrary = require('@testing-library/jest-dom/extend-expect')
-const { JSDOM } = require('jsdom');
-const fs = require("fs");
-const path = require("path");
-global.fetch = require('jest-fetch-mock')
+const userData = require('../main.js')
+const unmockedFetch = global.fetch
 
-const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
-
-let dom
-let container
-
-describe('index.html', () => {
-    beforeEach(() => {
-        dom = new JSDOM(html, { runScripts: 'dangerously' })
-        container = dom.window.document.body;
-        userDetail = dom.window.document.body;
-    })
-
-    it('renders a heading element',  () => {
-        expect(container.querySelector('h2')).not.toBeNull()
-        expect(getByText(container, 'User List')).toBeInTheDocument();
-    })
-   
+beforeAll(() => {
+    global.fetch = () =>
+        Promise.resolve({
+            json: () => Promise.resolve([]),
+        })
 })
+
+afterAll(() => {
+    global.fetch = unmockedFetch
+})
+
+
+describe('user data fetch api ', () => {
+    test('works', async () => {
+        const json = await userData()
+        expect(Array.isArray(json)).toEqual(true)
+        expect(json.length).toEqual(0)
+    })
+})
+
+
 
 
 
